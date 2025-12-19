@@ -17,12 +17,24 @@ class vec3:
         return self.e[1]
     def z(self):
         return self.e[2]
-    def __sub__(self, other):
-        return vec3(self.e[0] - other.e[0], self.e[1] - other.e[1], self.e[2] - other.e[2])
-
+    def __neg__(self):
+        return vec3(-self.e[0], -self.e[1], -self.e[2])
+    def __getitem__(self, key):
+        return self.e[key]
+    def __setitem__(self, key, value):
+        self.e[key] = value
+    def __iadd__(self, other):
+        self.e[0] += other.e[0]
+        self.e[1] += other.e[1]
+        self.e[2] += other.e[2]
+        return vec3(self.e[0], self.e[1], self.e[2])
+    def __
 test = vec3(1,2,3)
-test = vec3() - test
+stuff = vec3(1,2,3)
+test += stuff
+test[0] = 12
 logger.info(str(test.x())+str(test.y())+str(test.z()))
+#logger.info(test)
 image_height = 256
 image_width = 256
 print("P3\n"+str(image_width)+' '+str(image_height)+"\n255\n")
