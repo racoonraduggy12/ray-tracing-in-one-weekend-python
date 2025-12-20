@@ -3,7 +3,6 @@ import logging
 import numpy as np
 
 logger = logging.getLogger(__name__)
-
 logging.basicConfig(filename='raytracingweekend.log', level=logging.INFO)
 
 class vec3:
@@ -28,12 +27,25 @@ class vec3:
         self.e[1] += other.e[1]
         self.e[2] += other.e[2]
         return vec3(self.e[0], self.e[1], self.e[2])
-    def __
-test = vec3(1,2,3)
-stuff = vec3(1,2,3)
-test += stuff
-test[0] = 12
-logger.info(str(test.x())+str(test.y())+str(test.z()))
+    def __imul__(self, other):
+        self.e[0] *= other.e[0]
+        self.e[1] *= other.e[1]
+        self.e[2] *= other.e[2]
+        return vec3(self.e[0], self.e[1], self.e[2])
+    def __itruediv__(self, other):
+        self.e[0] *= 1/other.e[0]
+        self.e[1] *= 1/other.e[1]
+        self.e[2] *= 1/other.e[2]
+        return vec3(self.e[0], self.e[1], self.e[2])
+    def length_squared(self):
+        return self.e[0]*self.e[0] + self.e[1]*self.e[1] + self.e[2]*self.e[2]
+    def length(self):
+        return math.sqrt(self.length_squared())
+point3 = vec3
+#test = vec3(1,2,3)
+#stuff = vec3(1,2,3)
+#logger.info(str(test.length()))
+#logger.info(str(test.x())+str(test.y())+str(test.z()))
 #logger.info(test)
 image_height = 256
 image_width = 256
