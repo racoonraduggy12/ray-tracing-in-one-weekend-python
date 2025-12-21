@@ -2,7 +2,7 @@ INFO:__main__:23 -46 23
 INFO:__main__:0.2672612419124244 0.5345224838248488 0.8017837257372732
 INFO:__main__:0.0
 INFO:__main__:0.2672612419124244 0.5345224838248488 0.8017837257372732
-INFO:__main__:<vec3.vec3 object at 0x7fc8dd10d810>
+INFO:__main__:<vec3.vec3 object at 0x7fb86890d810>
 INFO:__main__:Scanlines remaining: 256
 INFO:__main__:Scanlines remaining: 255
 INFO:__main__:Scanlines remaining: 254
