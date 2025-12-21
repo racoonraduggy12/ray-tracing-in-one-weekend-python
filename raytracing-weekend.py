@@ -1,52 +1,21 @@
 import math
 import logging
 import numpy as np
+from vec3 import vec3, point3
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='raytracingweekend.log', level=logging.INFO)
 
-class vec3:
-    def __init__(self, e0=0, e1=0, e2=0):
-        e = [e0, e1, e2]
-        e = np.array(e)
-        self.e = e
-    def x(self):
-        return self.e[0]
-    def y(self):
-        return self.e[1]
-    def z(self):
-        return self.e[2]
-    def __neg__(self):
-        return vec3(-self.e[0], -self.e[1], -self.e[2])
-    def __getitem__(self, key):
-        return self.e[key]
-    def __setitem__(self, key, value):
-        self.e[key] = value
-    def __iadd__(self, other):
-        self.e[0] += other.e[0]
-        self.e[1] += other.e[1]
-        self.e[2] += other.e[2]
-        return vec3(self.e[0], self.e[1], self.e[2])
-    def __imul__(self, other):
-        self.e[0] *= other.e[0]
-        self.e[1] *= other.e[1]
-        self.e[2] *= other.e[2]
-        return vec3(self.e[0], self.e[1], self.e[2])
-    def __itruediv__(self, other):
-        self.e[0] *= 1/other.e[0]
-        self.e[1] *= 1/other.e[1]
-        self.e[2] *= 1/other.e[2]
-        return vec3(self.e[0], self.e[1], self.e[2])
-    def length_squared(self):
-        return self.e[0]*self.e[0] + self.e[1]*self.e[1] + self.e[2]*self.e[2]
-    def length(self):
-        return math.sqrt(self.length_squared())
-point3 = vec3
-#test = vec3(1,2,3)
-#stuff = vec3(1,2,3)
-#logger.info(str(test.length()))
-#logger.info(str(test.x())+str(test.y())+str(test.z()))
-#logger.info(test)
+
+test = vec3(123,223,323)
+stuff = point3(1,2,3)
+test = test.cross(stuff)
+stuff = stuff.unit_vector()
+logger.info(str(test.x())+" "+str(test.y())+" "+str(test.z()))
+logger.info(str(stuff.x())+" "+str(stuff.y())+" "+str(stuff.z()))
+logger.info(str(test.dot(stuff)))
+logger.info(stuff.so())
+logger.info(test)
 image_height = 256
 image_width = 256
 print("P3\n"+str(image_width)+' '+str(image_height)+"\n255\n")
