@@ -10,8 +10,17 @@ global logger
 logger = logging.getLogger(__name__)
 
 logging.basicConfig(filename='raytracingweekend.log', level=logging.INFO)
+def hit_sphere(center, radius, r):
+    oc = center - r.origin()
+    a = r.direction().dot(r.direction())
+    b = -2.0 * r.direction().dot(oc)
+    c = oc.dot(oc) - radius*radius
+    discriminant = b*b - 4*a*c
+    return (discriminant >= 0)
 
 def ray_color(r):
+    if hit_sphere(point3(0,0,-1), 0.5, r):
+        return color(0, 1,0)
     r_direction = r.direction()
     unit_direction = r_direction.unit_vector()
     a = (unit_direction.y() + 1.0)*0.5
