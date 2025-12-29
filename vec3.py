@@ -28,27 +28,23 @@ class vec3:
     def __setitem__(self, key, value):
         self.e[key] = value
 
-#assign add (+=) override
     def __iadd__(self, other):
         self.e[0] += other.e[0]
         self.e[1] += other.e[1]
         self.e[2] += other.e[2]
-        return vec3(self.e[0], self.e[1], self.e[2])
+        return self
 
-#assign multiply (*=) override
     def __imul__(self, other):
-        self.e[0] *= other.e[0]
-        self.e[1] *= other.e[1]
-        self.e[2] *= other.e[2]
-        return vec3(self.e[0], self.e[1], self.e[2])
+        self.e[0] *= other
+        self.e[1] *= other
+        self.e[2] *= other
+        return self
 
-#assign true division (/=) override
     def __itruediv__(self, other):
-        self.e[0] *= 1/other.e[0]
-        self.e[1] *= 1/other.e[1]
-        self.e[2] *= 1/other.e[2]
-        return vec3(self.e[0], self.e[1], self.e[2])
-
+        self.e[0] /= other
+        self.e[1] /= other
+        self.e[2] /= other
+        return self
 #vector magnatude getter
     def length_squared(self):
         return self.e[0]*self.e[0] + self.e[1]*self.e[1] + self.e[2]*self.e[2]
@@ -57,7 +53,10 @@ class vec3:
 
 #addition, multiplication and division ovverrides
     def __add__(self, other):
-        return vec3(self.e[0]+other.e[0], self.e[1]+other.e[1], self.e[2]+other.e[2])
+        try:
+            return vec3(self.e[0]+other.e[0], self.e[1]+other.e[1], self.e[2]+other.e[2])
+        except:
+            return vec3(self.e[0]+other, self.e[1]+other, self.e[2]+other)
     def __mul__(self, other):
         try:
             return vec3(self.e[0]*other.e[0], self.e[1]*other.e[1], self.e[2]*other.e[2])
@@ -65,6 +64,8 @@ class vec3:
             return vec3(self.e[0]*other, self.e[1]*other, self.e[2]*other)
     def __truediv__(self, other):
         return self * (1/other)
+    def __sub__(self, other):
+        return vec3(self.e[0]-other.e[0], self.e[1]-other.e[1], self.e[2]-other.e[2])
 
 #dot-production function
     def dot(self, other):
